@@ -6,6 +6,8 @@ import { blue } from 'material-ui/colors';
 import { Editor } from 'slate-react';
 import { Value } from 'slate';
 import initialData from '../slate-editor/initialData.json';
+import renderMark from '../slate-editor/renderer/renderMark';
+import plugins from '../slate-editor/plugins/index';
 
 import Navbar from './Navbar';
 import s from './App.scss';
@@ -39,7 +41,12 @@ class App extends React.Component {
         <Navbar />
         <div className={s.container}>
           <div className={s.editor}>
-            <Editor value={this.state.value} onChange={this.onChange} />
+            <Editor
+              value={this.state.value}
+              onChange={this.onChange}
+              renderMark={renderMark}
+              plugins={plugins}
+            />
           </div>
         </div>
       </MuiThemeProvider>
