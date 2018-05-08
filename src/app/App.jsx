@@ -3,8 +3,15 @@ import CssBaseline from 'material-ui/CssBaseline';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import { blue } from 'material-ui/colors';
 
+import { Editor } from 'slate-react';
+import { Value } from 'slate';
+import initialData from '../slate-editor/initialData.json';
+
 import Navbar from './Navbar';
 import s from './App.scss';
+
+
+const initialValue = Value.fromJSON(initialData);
 
 const theme = createMuiTheme({
   palette: {
@@ -17,7 +24,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      value: initialValue,
     };
+  }
+
+  onChange = ({ value }) => {
+    this.setState({ value });
   }
 
   render() {
@@ -26,7 +38,9 @@ class App extends React.Component {
         <CssBaseline />
         <Navbar />
         <div className={s.container}>
-          {/* content here */}
+          <div className={s.editor}>
+            <Editor value={this.state.value} onChange={this.onChange} />
+          </div>
         </div>
       </MuiThemeProvider>
     );
