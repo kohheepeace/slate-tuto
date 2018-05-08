@@ -7,6 +7,7 @@ import { Editor } from 'slate-react';
 import { Value } from 'slate';
 import initialData from '../slate-editor/initialData.json';
 import renderMark from '../slate-editor/renderer/renderMark';
+import renderNode from '../slate-editor/renderer/renderNode';
 import plugins from '../slate-editor/plugins/index';
 
 import Navbar from './Navbar';
@@ -45,6 +46,7 @@ class App extends React.Component {
               value={this.state.value}
               onChange={this.onChange}
               renderMark={renderMark}
+              renderNode={renderNode}
               plugins={plugins}
             />
           </div>
