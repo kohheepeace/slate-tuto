@@ -1,6 +1,18 @@
+body {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
 .container {
   background: #fff;
   padding-top: 80px;
   min-height: 100vh;
   height: 100%;
+}
+
+.editor {
+  margin: 0 auto;
+  max-width: 800px;
+  background: #fff;
+  padding: 20px;
+  min-height: 60vh;
 }

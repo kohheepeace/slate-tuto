@@ -29,8 +29,11 @@
   },
   "dependencies": {
     "@material-ui/icons": "^1.0.0-beta.43",
+    "immutable": "^3.8.2",
     "material-ui": "^1.0.0-beta.45",
     "react": "^16.3.2",
-    "react-dom": "^16.3.2"
+    "react-dom": "^16.3.2",
+    "slate": "^0.33.5",
+    "slate-react": "^0.12.5"
   }
 }
