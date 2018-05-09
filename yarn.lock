@@ -7599,6 +7599,10 @@ slate-edit-code@^0.15.0:
     ends-with "^0.2.0"
     is-hotkey "^0.1.1"
 
+slate-edit-list@^0.11.3:
+  version "0.11.3"
+  resolved "https://registry.yarnpkg.com/slate-edit-list/-/slate-edit-list-0.11.3.tgz#d27ff2ff93a83bef49131a6a44b87a9558c9d44c"
+
 slate-hotkeys@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/slate-hotkeys/-/slate-hotkeys-0.1.1.tgz#e1a362473c21f55176ff0e00cc4a3a34ff84ec9b"

@@ -4,6 +4,7 @@ import SlateEditCode from 'slate-edit-code';
 import Prism from 'prismjs';
 import PrismLoader from 'prismjs-components-loader';
 import componentIndex from 'prismjs-components-loader/lib/all-components';
+import SlateEditList from 'slate-edit-list';
 
 import MARKS from '../constants/marks';
 import BLOCKS from '../constants/blocks';
@@ -13,6 +14,10 @@ import exitHeading from './exitHeading';
 const prismLoader = new PrismLoader(componentIndex);
 
 const plugins = [
+  SlateEditList({
+    types: [BLOCKS.OL_LIST, BLOCKS.UL_LIST],
+    typeItem: BLOCKS.LIST_ITEM,
+  }),
   SlateEditCode(),
   SlatePrism({
     onlyIn: (node => node.type === BLOCKS.CODE_BLOCK),
@@ -24,6 +29,16 @@ const plugins = [
       if (syntax && index !== -1) { prismLoader.load(Prism, syntax); }
       return syntax;
     }),
+  }),
+  AutoReplace({
+    trigger: 'space',
+    before: /^(-)$/,
+    transform: transform => SlateEditList().changes.wrapInList(transform, BLOCKS.UL_LIST),
+  }),
+  AutoReplace({
+    trigger: 'space',
+    before: /^(1.)$/,
+    transform: transform => SlateEditList().changes.wrapInList(transform, BLOCKS.OL_LIST),
   }),
   AutoReplace({
     trigger: 'enter',
