@@ -6,4 +6,6 @@ module.exports = {
   HEADING_4: 'heading_4',
   HEADING_5: 'heading_5',
   HEADING_6: 'heading_6',
+  CODE_BLOCK: 'code_block',
+  CODE_LINE: 'code_line',
 };
