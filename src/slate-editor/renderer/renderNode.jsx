@@ -40,6 +40,8 @@ const renderNode = (props) => {
       return <ul {...attributes}>{children}</ul>;
     case BLOCKS.CHECK_LIST_ITEM:
       return <CheckListItem {...props} />;
+    case BLOCKS.BLOCKQUOTE:
+      return <blockquote {...attributes}>{children}</blockquote>;
     default:
       break;
   }
