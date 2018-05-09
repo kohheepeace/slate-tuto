@@ -3,6 +3,7 @@ import React from 'react';
 import BLOCKS from '../constants/blocks';
 import Heading from './Heading';
 import CodeBlock from './CodeBlock';
+import CheckListItem from './CheckListItem';
 
 const renderNode = (props) => {
   const {
@@ -35,6 +36,10 @@ const renderNode = (props) => {
       return <ol {...attributes}>{children}</ol>;
     case BLOCKS.LIST_ITEM:
       return <li {...attributes}>{children}</li>;
+    case BLOCKS.CHECK_LIST:
+      return <ul {...attributes}>{children}</ul>;
+    case BLOCKS.CHECK_LIST_ITEM:
+      return <CheckListItem {...props} />;
     default:
       break;
   }

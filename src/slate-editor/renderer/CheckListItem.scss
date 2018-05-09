@@ -1,0 +1,19 @@
+.listItem {
+  line-height: 1.7;
+  list-style: none;
+  display: flex;
+  margin-left: -18px;
+}
+
+.checkBox {
+  flex: 0;
+  padding-right: 10px;
+}
+
+.content {
+  flex: 1;
+
+  p {
+    margin: 0;
+  }
+}
