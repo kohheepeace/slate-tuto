@@ -15,6 +15,10 @@ const prismLoader = new PrismLoader(componentIndex);
 
 const plugins = [
   SlateEditList({
+    types: [BLOCKS.CHECK_LIST],
+    typeItem: BLOCKS.CHECK_LIST_ITEM,
+  }),
+  SlateEditList({
     types: [BLOCKS.OL_LIST, BLOCKS.UL_LIST],
     typeItem: BLOCKS.LIST_ITEM,
   }),
@@ -29,6 +33,11 @@ const plugins = [
       if (syntax && index !== -1) { prismLoader.load(Prism, syntax); }
       return syntax;
     }),
+  }),
+  AutoReplace({
+    trigger: 'space',
+    before: /^(\[\])$/,
+    transform: transform => SlateEditList().changes.wrapInList(transform, BLOCKS.CHECK_LIST),
   }),
   AutoReplace({
     trigger: 'space',

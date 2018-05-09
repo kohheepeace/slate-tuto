@@ -12,4 +12,6 @@ module.exports = {
   OL_LIST: 'ol_list',
   UL_LIST: 'ul_list',
   LIST_ITEM: 'list_item',
+  CHECK_LIST: 'check_list',
+  CHECK_LIST_ITEM: 'check_list_item',
 };
