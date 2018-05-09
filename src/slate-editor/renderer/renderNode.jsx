@@ -29,6 +29,12 @@ const renderNode = (props) => {
       return <div {...attributes}>{children}</div>;
     case BLOCKS.HR:
       return <hr {...attributes} style={isSelected ? { outline: '1px solid #17a2b8' } : null} />;
+    case BLOCKS.UL_LIST:
+      return <ul {...attributes}>{children}</ul>;
+    case BLOCKS.OL_LIST:
+      return <ol {...attributes}>{children}</ol>;
+    case BLOCKS.LIST_ITEM:
+      return <li {...attributes}>{children}</li>;
     default:
       break;
   }

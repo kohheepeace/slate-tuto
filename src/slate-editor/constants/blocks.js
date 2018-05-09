@@ -9,4 +9,7 @@ module.exports = {
   CODE_BLOCK: 'code_block',
   CODE_LINE: 'code_line',
   HR: 'hr',
+  OL_LIST: 'ol_list',
+  UL_LIST: 'ul_list',
+  LIST_ITEM: 'list_item',
 };
