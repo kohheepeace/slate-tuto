@@ -1,0 +1,30 @@
+.codeBlock {
+  color: #242A31;
+  background: #f7f9fa;
+}
+
+.header {
+  background: #f5f7f9;
+  display: flex;
+}
+
+.filename {
+  padding-left: 10px;
+  flex:2;
+}
+
+.syntax {
+  width: 7rem;
+}
+
+.content {
+  padding:12px;
+  line-height: 20px;
+}
+
+:global {
+  .Select-control{
+    background: transparent;
+    border: none;
+  }
+}
