@@ -14,4 +14,5 @@ module.exports = {
   LIST_ITEM: 'list_item',
   CHECK_LIST: 'check_list',
   CHECK_LIST_ITEM: 'check_list_item',
+  BLOCKQUOTE: 'blockquote',
 };

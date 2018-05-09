@@ -5,6 +5,7 @@ import Prism from 'prismjs';
 import PrismLoader from 'prismjs-components-loader';
 import componentIndex from 'prismjs-components-loader/lib/all-components';
 import SlateEditList from 'slate-edit-list';
+import SlateEditBlockquote from 'slate-edit-blockquote';
 
 import MARKS from '../constants/marks';
 import BLOCKS from '../constants/blocks';
@@ -14,6 +15,7 @@ import exitHeading from './exitHeading';
 const prismLoader = new PrismLoader(componentIndex);
 
 const plugins = [
+  SlateEditBlockquote(),
   SlateEditList({
     types: [BLOCKS.CHECK_LIST],
     typeItem: BLOCKS.CHECK_LIST_ITEM,
@@ -33,6 +35,11 @@ const plugins = [
       if (syntax && index !== -1) { prismLoader.load(Prism, syntax); }
       return syntax;
     }),
+  }),
+  AutoReplace({
+    trigger: 'space',
+    before: /^(>)$/,
+    transform: transform => SlateEditBlockquote().changes.wrapInBlockquote(transform),
   }),
   AutoReplace({
     trigger: 'space',
