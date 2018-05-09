@@ -27,6 +27,14 @@ const plugins = [
   }),
   AutoReplace({
     trigger: 'enter',
+    before: /^(-{3})$/,
+    transform: transform => transform.insertBlock({
+      type: BLOCKS.HR,
+      isVoid: true,
+    }),
+  }),
+  AutoReplace({
+    trigger: 'enter',
     before: /^(`{3}.*)/,
     transform: (transform, e, matches) => {
       const input = matches.before.input.replace('```', '');

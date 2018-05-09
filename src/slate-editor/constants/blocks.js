@@ -8,4 +8,5 @@ module.exports = {
   HEADING_6: 'heading_6',
   CODE_BLOCK: 'code_block',
   CODE_LINE: 'code_line',
+  HR: 'hr',
 };
