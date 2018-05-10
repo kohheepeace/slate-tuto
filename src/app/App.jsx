@@ -52,7 +52,10 @@ class App extends React.Component {
     return (
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
-        <Navbar />
+        <Navbar
+          value={this.state.value}
+          onChange={value => this.onChange(value)}
+        />
         <div className={s.container}>
           <div className={s.editor}>
             <Editor
