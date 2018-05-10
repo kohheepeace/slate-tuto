@@ -16,6 +16,10 @@ body {
   padding: 20px;
   min-height: 60vh;
 
+  a {
+    color: #2196f3;
+  }
+
   :not(pre) > code {
     font-family: monospace;
     background: #f5f7f9; 
@@ -27,5 +31,43 @@ body {
     margin-left: 0;
     padding-left: 10px;
     color: #c4c7c4;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 1px solid #ccc;
+  }
+
+  table tr {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  table tr:first-child {
+    background: #f7f8f9;
+  }
+
+  table tr:first-child p {
+    font-weight: bold;
+  }
+
+  table td {
+    padding: .4rem 1.4rem .4rem .8rem;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+    flex: 1;
+    word-break: break-all;
+    position: relative;
+  }
+
+  table td p {
+    margin: 0;
   }
 }

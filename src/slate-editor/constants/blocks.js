@@ -18,4 +18,6 @@ module.exports = {
   TABLE: 'table',
   TABLE_ROW: 'table_row',
   TABLE_CELL: 'table_cell',
+  IMAGE: 'image',
+  VIDEO: 'video',
 };

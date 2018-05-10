@@ -1,9 +1,14 @@
 import React from 'react';
 
 import BLOCKS from '../constants/blocks';
+import INLINES from '../constants/inlines';
 import Heading from './Heading';
 import CodeBlock from './CodeBlock';
 import CheckListItem from './CheckListItem';
+import LinkNode from './LinkNode';
+import Image from './Image';
+import Video from './Video';
+
 
 const renderNode = (props) => {
   const {
@@ -48,6 +53,12 @@ const renderNode = (props) => {
       return <tr {...attributes}>{children}</tr>;
     case BLOCKS.TABLE_CELL:
       return <td {...attributes}>{children}</td>;
+    case BLOCKS.IMAGE:
+      return <Image {...props} />;
+    case INLINES.LINK:
+      return <LinkNode {...props} />;
+    case BLOCKS.VIDEO:
+      return <Video {...props} />;
     default:
       break;
   }
