@@ -29,7 +29,11 @@
   },
   "dependencies": {
     "@material-ui/icons": "^1.0.0-beta.43",
+    "@strelka/slate-edit-table": "^0.16.0",
+    "get-video-id": "^3.1.0",
     "immutable": "^3.8.2",
+    "is-image": "^2.0.0",
+    "is-url": "^1.2.4",
     "material-ui": "^1.0.0-beta.45",
     "prismjs": "^1.14.0",
     "prismjs-components-loader": "^2.0.0",

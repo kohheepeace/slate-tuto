@@ -42,6 +42,12 @@ const renderNode = (props) => {
       return <CheckListItem {...props} />;
     case BLOCKS.BLOCKQUOTE:
       return <blockquote {...attributes}>{children}</blockquote>;
+    case BLOCKS.TABLE:
+      return <table><tbody {...attributes}>{children}</tbody></table>;
+    case BLOCKS.TABLE_ROW:
+      return <tr {...attributes}>{children}</tr>;
+    case BLOCKS.TABLE_CELL:
+      return <td {...attributes}>{children}</td>;
     default:
       break;
   }
