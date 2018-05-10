@@ -1,0 +1,26 @@
+.imageBlock {
+  max-width: 100%;
+  max-height: 30rem;
+  text-align: center;
+  margin-bottom: 0;
+
+  figcaption {
+    min-height: .9rem;
+    color: #222;
+    font-size: .6rem;
+
+    input[type="text"]
+    {
+      color: #222;
+      width: 100%;
+      text-align: center;
+      background: transparent;
+      border: none;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 30rem;
+  }
+}
