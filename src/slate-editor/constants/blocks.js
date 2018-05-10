@@ -15,4 +15,7 @@ module.exports = {
   CHECK_LIST: 'check_list',
   CHECK_LIST_ITEM: 'check_list_item',
   BLOCKQUOTE: 'blockquote',
+  TABLE: 'table',
+  TABLE_ROW: 'table_row',
+  TABLE_CELL: 'table_cell',
 };

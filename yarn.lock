@@ -88,6 +88,12 @@
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
 
+"@strelka/slate-edit-table@^0.16.0":
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/@strelka/slate-edit-table/-/slate-edit-table-0.16.0.tgz#4e06b75f03dd3cbb303b402d5c8dd838a4de8afb"
+  dependencies:
+    is-hotkey "^0.1.2"
+
 "@types/jss@^9.3.0":
   version "9.5.2"
   resolved "https://registry.yarnpkg.com/@types/jss/-/jss-9.5.2.tgz#85076b2c16606a6f996aa7e20c1ec7ed6a08075f"

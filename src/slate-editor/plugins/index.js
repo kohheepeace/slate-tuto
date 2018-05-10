@@ -6,6 +6,7 @@ import PrismLoader from 'prismjs-components-loader';
 import componentIndex from 'prismjs-components-loader/lib/all-components';
 import SlateEditList from 'slate-edit-list';
 import SlateEditBlockquote from 'slate-edit-blockquote';
+import SlateEditTable from '@strelka/slate-edit-table';
 
 import MARKS from '../constants/marks';
 import BLOCKS from '../constants/blocks';
@@ -15,6 +16,7 @@ import exitHeading from './exitHeading';
 const prismLoader = new PrismLoader(componentIndex);
 
 const plugins = [
+  SlateEditTable(),
   SlateEditBlockquote(),
   SlateEditList({
     types: [BLOCKS.CHECK_LIST],
@@ -35,6 +37,17 @@ const plugins = [
       if (syntax && index !== -1) { prismLoader.load(Prism, syntax); }
       return syntax;
     }),
+  }),
+  AutoReplace({
+    trigger: 'enter',
+    before: /^(table:[1-9]\d?x[1-9]\d?)$/,
+    transform: (transform, e, matches) => {
+      const input = matches.before.input.replace('table:', '');
+      const columns = input.split('x')[1];
+      const rows = input.split('x')[0];
+
+      return SlateEditTable().changes.insertTable(transform, columns, rows);
+    },
   }),
   AutoReplace({
     trigger: 'space',
