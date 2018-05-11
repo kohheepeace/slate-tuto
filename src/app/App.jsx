@@ -15,6 +15,7 @@ import plugins from '../slate-editor/plugins/index';
 import onPasteText from '../slate-editor/helpers/onPasteText';
 import onPasteHtml from '../slate-editor/helpers/onPasteHtml';
 import HoveringMenu from '../slate-editor/components/HoveringMenu';
+import schema from '../slate-editor/schema/index';
 
 import Navbar from './Navbar';
 import s from './App.scss';
@@ -75,6 +76,7 @@ class App extends React.Component {
                 renderMark={renderMark}
                 renderNode={renderNode}
                 plugins={plugins}
+                schema={schema}
               />
             </div>
           </div>
