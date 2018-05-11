@@ -118,12 +118,10 @@ function Navbar(props) {
       case BLOCKS.HEADING_3:
       {
         const isActive = hasBlock(type);
-        change.setBlocks(isActive ? BLOCKS.PARAGRAPH : type);
-        break;
+        return props.onChange(change.setBlocks(isActive ? BLOCKS.PARAGRAPH : type));
       }
       case BLOCKS.HR: {
-        change.setBlocks({ type, isVoid: true });
-        break;
+        return props.onChange(change.setBlocks({ type, isVoid: true }));
       }
       case BLOCKS.BLOCKQUOTE: {
         const isActive = BlockquotePlugin.utils.isSelectionInBlockquote(value);
@@ -132,9 +130,8 @@ function Navbar(props) {
           :
           props.onChange(BlockquotePlugin.changes.wrapInBlockquote(change));
       }
-      case BLOCKS.CODE_BLOCk: {
-        CodePlugin.changes.toggleCodeBlock(change);
-        break;
+      case BLOCKS.CODE_BLOCK: {
+        return props.onChange(CodePlugin.changes.toggleCodeBlock(change));
       }
       case BLOCKS.TABLE: {
         const isActive = TablePlugin.utils.isSelectionInTable(value);
@@ -170,8 +167,6 @@ function Navbar(props) {
       default:
         return null;
     }
-
-    return props.onChange(change);
   }
 
   function renderBlockButton(type, title) {
