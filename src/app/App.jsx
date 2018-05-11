@@ -11,6 +11,7 @@ import renderNode from '../slate-editor/renderer/renderNode';
 import plugins from '../slate-editor/plugins/index';
 import onPasteText from '../slate-editor/helpers/onPasteText';
 import onPasteHtml from '../slate-editor/helpers/onPasteHtml';
+import HoveringMenu from '../slate-editor/components/HoveringMenu';
 
 import Navbar from './Navbar';
 import s from './App.scss';
@@ -55,6 +56,10 @@ class App extends React.Component {
         <Navbar
           value={this.state.value}
           onChange={value => this.onChange(value)}
+        />
+        <HoveringMenu
+          value={this.state.value}
+          onChange={this.onChange}
         />
         <div className={s.container}>
           <div className={s.editor}>
