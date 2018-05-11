@@ -1,10 +1,14 @@
 {
+  "homepage": "https://kohheepeace.github.io/slate-tuto/",
   "name": "my-react-webpack-babel-boiler",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.js --mode development"
+    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "build": "webpack --config ./webpack.config.js --mode production",
+    "deploy": "gh-pages -d dist",
+    "publish-demo": "yarn run build && yarn run deploy"
   },
   "devDependencies": {
     "babel-core": "^6.26.2",
@@ -20,6 +24,7 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
+    "gh-pages": "^1.1.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
