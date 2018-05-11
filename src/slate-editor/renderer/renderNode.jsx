@@ -8,7 +8,7 @@ import CheckListItem from './CheckListItem';
 import LinkNode from './LinkNode';
 import Image from './Image';
 import Video from './Video';
-
+import Paragraph from './Paragraph';
 
 const renderNode = (props) => {
   const {
@@ -16,7 +16,7 @@ const renderNode = (props) => {
   } = props;
   switch (node.type) {
     case BLOCKS.PARAGRAPH:
-      return <p {...attributes}>{children}</p>;
+      return <Paragraph {...props} />;
     case BLOCKS.HEADING_1:
       return <Heading {...props} />;
     case BLOCKS.HEADING_2:

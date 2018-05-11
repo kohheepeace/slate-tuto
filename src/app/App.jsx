@@ -3,6 +3,9 @@ import CssBaseline from 'material-ui/CssBaseline';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import { blue } from 'material-ui/colors';
 
+import { DragDropContextProvider } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
+
 import { Editor, getEventTransfer } from 'slate-react';
 import { Value } from 'slate';
 import initialData from '../slate-editor/initialData.json';
@@ -61,18 +64,21 @@ class App extends React.Component {
           value={this.state.value}
           onChange={this.onChange}
         />
-        <div className={s.container}>
-          <div className={s.editor}>
-            <Editor
-              value={this.state.value}
-              onChange={this.onChange}
-              onPaste={this.onPaste}
-              renderMark={renderMark}
-              renderNode={renderNode}
-              plugins={plugins}
-            />
+        <DragDropContextProvider backend={HTML5Backend}>
+          <div className={s.container}>
+            <div className={s.editor}>
+              <Editor
+                style={{ paddingBottom: 'calc(25rem - 100px)' }}
+                value={this.state.value}
+                onChange={this.onChange}
+                onPaste={this.onPaste}
+                renderMark={renderMark}
+                renderNode={renderNode}
+                plugins={plugins}
+              />
+            </div>
           </div>
-        </div>
+        </DragDropContextProvider>
       </MuiThemeProvider>
     );
   }

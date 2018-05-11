@@ -1,10 +1,38 @@
 import React from 'react';
 import Input from 'material-ui/Input';
 import { blue } from 'material-ui/colors';
+import { DragSource } from 'react-dnd';
 
 import s from './Image.scss';
 
+const imageSource = {
+  canDrag(props) {
+    return !props.readOnly;
+  },
+  /* eslint-disable */
+  beginDrag(props) {
+    return {};
+  },
+  /* eslint-enable */
+};
+
+function collect(connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource(),
+    connectDragPreview: connect.dragPreview(),
+    isDragging: monitor.isDragging(),
+  };
+}
+
 class Image extends React.PureComponent {
+  // https://github.com/ianstormtaylor/slate/issues/772
+  // http://react-dnd.github.io/react-dnd/examples-customize-handles-and-previews.html
+  /* Preview image not working and help wanted! */
+  componentDidMount() {
+    const newDiv = document.createElement('div');
+    this.props.connectDragPreview(newDiv);
+  }
+
   onClick = (e) => {
     e.stopPropagation();
   }
@@ -19,7 +47,7 @@ class Image extends React.PureComponent {
 
   render() {
     const {
-      node, editor, attributes, isSelected,
+      node, editor, attributes, connectDragSource, isDragging, isSelected,
     } = this.props;
     const src = node.data.get('src');
     const caption = node.data.get('caption');
@@ -28,11 +56,12 @@ class Image extends React.PureComponent {
     const imgStyle = {
       cursor: readOnly ? 'auto' : 'move',
       border: isSelected ? `2px solid ${blue[500]}` : '',
+      opacity: isDragging ? 0.5 : 1,
     };
 
     return (
       <figure className={s.imageBlock} {...attributes}>
-        <img src={src} style={imgStyle} alt="" />
+        {connectDragSource(<img src={src} style={imgStyle} alt="" />)}
         <figcaption>
           {readOnly ?
             caption
@@ -53,4 +82,4 @@ class Image extends React.PureComponent {
   }
 }
 
-export default Image;
+export default DragSource('image', imageSource, collect)(Image);
