@@ -7732,6 +7732,10 @@ slate-react@^0.12.5:
     slate-plain-serializer "^0.5.11"
     slate-prop-types "^0.4.28"
 
+slate-schema-violations@^0.1.10:
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/slate-schema-violations/-/slate-schema-violations-0.1.10.tgz#165227c230ea6c1027e523b7171a73e860e73646"
+
 slate-schema-violations@^0.1.9:
   version "0.1.9"
   resolved "https://registry.yarnpkg.com/slate-schema-violations/-/slate-schema-violations-0.1.9.tgz#01c68cfabedc1b6d7f4c1bb8fe7cbe1711230596"
