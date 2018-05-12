@@ -3,6 +3,7 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Tooltip from 'material-ui/Tooltip';
+import Button from 'material-ui/Button';
 
 /* slate plugin */
 import SlateEditTable from '@strelka/slate-edit-table';
@@ -258,7 +259,7 @@ function Navbar(props) {
   return (
     <AppBar position="fixed" color="inherit">
       <Toolbar>
-        <Typography variant="title" color="inherit">
+        <Typography variant="title" color="inherit" style={{ flex: 2 }}>
           Slate-Tuto
         </Typography>
         <div className={s.editorTools}>
@@ -279,6 +280,8 @@ function Navbar(props) {
           {renderBlockButton(BLOCKS.OL_LIST, '1. + space')}
           {renderBlockButton(BLOCKS.CHECK_LIST, '[] + space')}
         </div>
+        <Button color="primary" href="https://github.com/KohheePeace/slate-tuto">Github</Button>
+        <Button color="primary" href="https://kohhepeace.gitbook.io/project/~/edit/primary/">Docs</Button>
       </Toolbar>
     </AppBar>
   );
