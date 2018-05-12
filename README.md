@@ -1,27 +1,12 @@
-# README
-This boilerplate includes...
+# Slate Tutorial
 
-## Webpack
-"webpack": "^4.6.0",
-"webpack-cli": "^2.0.15",
-"webpack-dev-server": "^3.1.3"
+This is a tutorial to make wysiwyg editor with shorcut command like **dropbox paper** using [slate](https://github.com/ianstormtaylor/slate)
 
-## Eslint
-"eslint": "^4.9.0",
-"eslint-config-airbnb": "^16.1.0",
-"eslint-loader": "^2.0.0",
-"eslint-plugin-import": "^2.7.0",
-"eslint-plugin-jsx-a11y": "^6.0.3",
-"eslint-plugin-react": "^7.7.0",
+## Demo
+![demo-gif](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LBld6TqpjNc5ryWZS3O%2F-LBtupWv2zjhzMUmcwd4%2F-LBuTlWqtDqSymEr_MXV%2F20180507-084215.gif?alt=media&token=768cd051-4d23-4dd6-a892-026de08f1cc1)
+https://kohheepeace.github.io/slate-tuto/
 
-## Babel
-"babel-core": "^6.26.2",
-"babel-eslint": "8",
-"babel-loader": "^7.1.4",
-"babel-preset-env": "^1.6.1",
-"babel-preset-react": "^6.24.1",
-"babel-preset-stage-2": "^6.24.1",
 
-## React 
-"react": "^16.3.2",
-"react-dom": "^16.3.2"
+## Docs
+https://kohhepeace.gitbook.io/project/~/edit/primary/
+
