@@ -10,5 +10,5 @@ https://kohheepeace.github.io/slate-tuto/
 ## Docs
 https://kohhepeace.gitbook.io/project/~/edit/primary/
 
-=> Gone during publishing... 😭😭😭😭😭😭
+=> Docs are Gone during publishing... 😭😭😭😭😭😭
 I will write again when I get energy again...
