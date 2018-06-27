@@ -12,3 +12,4 @@ https://kohhepeace.gitbook.io/project/~/edit/primary/
 
 => Docs are Gone during publishing... 😭😭😭😭😭😭
 I will write again when I get energy again...
+You can see the diff of each chapter in branch, please check it alternatively.
