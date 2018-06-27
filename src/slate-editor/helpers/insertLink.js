@@ -1,19 +1,19 @@
 import { LINK } from '../constants/inlines';
 
-const insertLink = (change, url) => {
+const insertLink = (change, href) => {
   if (change.value.isCollapsed) {
     change
-      .insertText(url)
-      .extend(0 - url.length)
+      .insertText(href)
+      .extend(0 - href.length)
       .wrapInline({
         type: LINK,
-        data: { url },
+        data: { href },
       })
       .collapseToEnd();
   } else {
     change.wrapInline({
       type: LINK,
-      data: { url },
+      data: { href },
     });
 
     change.collapseToEnd();
