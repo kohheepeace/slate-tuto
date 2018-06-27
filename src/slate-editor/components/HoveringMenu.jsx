@@ -88,7 +88,7 @@ class HoveringMenu extends React.Component {
         {this.renderMarkButton(MARKS.BOLD, 'FormatBold', '⌘ + b')}
         {this.renderMarkButton(MARKS.ITALIC, 'FormatItalic', '⌘ + i')}
         {this.renderMarkButton(MARKS.HIGHLIGHT, 'BorderColor', '⌘ + e')}
-        {this.renderMarkButton(MARKS.STRIKETHROUTH, 'StrikethroughS', '⌘ + d')}
+        {this.renderMarkButton(MARKS.STRIKETHROUGH, 'StrikethroughS', '⌘ + d')}
         {this.renderMarkButton(MARKS.UNDERLINE, 'FormatUnderlined', '⌘ + u')}
         {this.renderMarkButton(MARKS.CODE, 'Code', '⌘ + shift + 9')}
       </div>,
