@@ -1,9 +1,10 @@
 import { Block, Text } from 'slate';
 import { List } from 'immutable';
+import SlateEditCode from 'slate-edit-code';
+
 import BLOCKS from '../constants/blocks';
 import MARKS from '../constants/marks';
 import INLINES from '../constants/inlines';
-import SlateEditCode from 'slate-edit-code';
 
 const BLOCK_TAGS = {
   p: BLOCKS.PARAGRAPH,

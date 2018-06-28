@@ -12,27 +12,38 @@ const syntaxList = Object.keys(languages).map(syntax => ({ label: syntax, value:
 export default class CodeBlock extends React.PureComponent {
   constructor(props) {
     super(props);
+
+    const { node } = props;
+    const syntax = node.data.get('syntax');
+    const filename = node.data.get('filename');
+
     this.state = {
+      filename,
+      syntax,
       isFilenameFocused: false,
     };
   }
 
   onFilenameChange = (e) => {
     const filename = e.target.value;
-    const { node, editor } = this.props;
 
-    editor.change(c => c.setNodeByKey(node.key, { data: { filename } }));
+    this.setState({
+      filename,
+    });
   }
 
   onSyntaxChange = (select) => {
     const syntax = select.value;
-    const { node, editor } = this.props;
 
-    editor.change(c =>
-      c.setNodeByKey(node.key, { data: { syntax } }));
+    this.setState({
+      syntax,
+    });
+
+    this.saveData();
   }
 
-  onFocus = () => {
+  onFocus = (e) => {
+    e.stopPropagation();
     this.setState({
       isFilenameFocused: true,
     });
@@ -41,6 +52,22 @@ export default class CodeBlock extends React.PureComponent {
   onBlur = () => {
     this.setState({
       isFilenameFocused: false,
+    });
+
+    this.saveData();
+  }
+
+  saveData = () => {
+    const { node, editor } = this.props;
+    const { syntax, filename } = this.state;
+
+    editor.change((c) => {
+      c.setNodeByKey(node.key, {
+        data: {
+          syntax,
+          filename,
+        },
+      });
     });
   }
 
@@ -51,16 +78,14 @@ export default class CodeBlock extends React.PureComponent {
   }
 
   render() {
-    const { isFilenameFocused } = this.state;
+    const { isFilenameFocused, syntax, filename } = this.state;
 
     const {
-      node, attributes, children, editor,
+      attributes, children, editor,
     } = this.props;
 
     const { readOnly, value } = editor.props;
 
-    const syntax = node.data.get('syntax');
-    const filename = node.data.get('filename');
     const isInCodeBlock = SlateEditCode().utils.isInCodeBlock(value);
 
     return (
@@ -92,6 +117,7 @@ export default class CodeBlock extends React.PureComponent {
                   autoFocus={isFilenameFocused}
                   value={filename || ''}
                   placeholder="filename"
+                  style={{ fontSize: '.8rem' }}
                   onFocus={this.onFocus}
                   onBlur={this.onBlur}
                   onChange={this.onFilenameChange}
@@ -126,8 +152,9 @@ export default class CodeBlock extends React.PureComponent {
             font-size: .7rem;
             position: absolute;
             right: 0;
-            top: -37px;
+            top: -35px;
             display: flex;
+            align-items: baseline;
             background: transparent;
           }
 
