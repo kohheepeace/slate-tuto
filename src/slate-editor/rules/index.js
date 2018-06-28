@@ -3,6 +3,7 @@ import { List } from 'immutable';
 import BLOCKS from '../constants/blocks';
 import MARKS from '../constants/marks';
 import INLINES from '../constants/inlines';
+import SlateEditCode from 'slate-edit-code';
 
 const BLOCK_TAGS = {
   p: BLOCKS.PARAGRAPH,
@@ -75,17 +76,8 @@ const rules = [
   {
     deserialize(el) {
       if (el.tagName.toLowerCase() !== 'pre') return;
-      const lines = List(el.childNodes).map(line =>
-        Block.create({
-          type: BLOCKS.CODE_LINE,
-          nodes: [Text.create(line.textContent)],
-        }));
 
-      const codeBlock = Block.create({
-        type: BLOCKS.CODE_BLOCK,
-        nodes: lines,
-        // data: { filename, syntax },
-      });
+      const codeBlock = SlateEditCode().utils.deserializeCode(el.innerText);
 
       return codeBlock;
     },
