@@ -1,6 +1,6 @@
 import Html from 'slate-html-serializer';
 import { getEventTransfer } from 'slate-react';
-import rules from '../rules/index';
+import rules from '../rules';
 
 const serializer = new Html({ rules });
 
