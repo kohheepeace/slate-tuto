@@ -2,13 +2,13 @@ import React from 'react';
 
 import BLOCKS from '../constants/blocks';
 import INLINES from '../constants/inlines';
-import Heading from './Heading';
-import CodeBlock from './CodeBlock';
-import CheckListItem from './CheckListItem';
-import LinkNode from './LinkNode';
-import Image from './Image';
-import Video from './Video';
-import Paragraph from './Paragraph';
+import Heading from './blocks/Heading';
+import CodeBlock from './blocks/CodeBlock';
+import CheckListItem from './blocks/CheckListItem';
+import LinkNode from './blocks/LinkNode';
+import Image from './blocks/Image';
+import Video from './blocks/Video';
+import Paragraph from './blocks/Paragraph';
 
 const renderNode = (props) => {
   const {
