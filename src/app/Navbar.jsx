@@ -25,9 +25,13 @@ import GridOn from '@material-ui/icons/GridOn';
 import FormatListBulleted from '@material-ui/icons/FormatListBulleted';
 import FormatListNumbered from '@material-ui/icons/FormatListNumbered';
 import CheckBox from '@material-ui/icons/CheckBox';
+import FormatAlignRight from '@material-ui/icons/FormatAlignRight';
+import FormatAlignLeft from '@material-ui/icons/FormatAlignLeft';
 
 import MARKS from '../slate-editor/constants/marks';
 import BLOCKS from '../slate-editor/constants/blocks';
+
+import Bold from '../slate-editor/icons/Bold';
 
 import s from './Navbar.scss';
 
@@ -61,10 +65,10 @@ function Navbar(props) {
 
   function onClickMark(e, type) {
     e.preventDefault();
-    const { value } = props;
+    const { value, onChange } = props;
     const change = value.change().toggleMark(type);
 
-    props.onChange(change);
+    onChange(change);
   }
 
   function renderMarkButton(type, title) {
@@ -110,8 +114,10 @@ function Navbar(props) {
   function onClickBlock(e, type) {
     e.preventDefault();
 
-    const { value } = props;
+    const { value, onChange } = props;
     const change = value.change();
+    const { selection } = value;
+    console.log(selection);
 
     switch (type) {
       case BLOCKS.HEADING_1:
@@ -119,51 +125,54 @@ function Navbar(props) {
       case BLOCKS.HEADING_3:
       {
         const isActive = hasBlock(type);
-        return props.onChange(change.setBlocks(isActive ? BLOCKS.PARAGRAPH : type));
+        return onChange(change.setBlocks(isActive ? BLOCKS.PARAGRAPH : type));
       }
       case BLOCKS.HR: {
-        return props.onChange(change.setBlocks({ type, isVoid: true }));
+        return onChange(change.setBlocks({ type, isVoid: true }));
       }
       case BLOCKS.BLOCKQUOTE: {
         const isActive = BlockquotePlugin.utils.isSelectionInBlockquote(value);
         return isActive ?
-          props.onChange(BlockquotePlugin.changes.unwrapBlockquote(change))
+          onChange(BlockquotePlugin.changes.unwrapBlockquote(change))
           :
-          props.onChange(BlockquotePlugin.changes.wrapInBlockquote(change));
+          onChange(BlockquotePlugin.changes.wrapInBlockquote(change));
       }
       case BLOCKS.CODE_BLOCK: {
-        return props.onChange(CodePlugin.changes.toggleCodeBlock(change));
+        return onChange(CodePlugin.changes.toggleCodeBlock(change));
       }
       case BLOCKS.TABLE: {
         const isActive = TablePlugin.utils.isSelectionInTable(value);
         return isActive ?
-          props.onChange(TablePlugin.changes.removeTable(change))
+          onChange(TablePlugin.changes.removeTable(change))
           :
-          props.onChange(TablePlugin.changes.insertTable(change));
+          onChange(TablePlugin.changes.insertTable(change));
       }
       case BLOCKS.UL_LIST: {
         const isActive = ListPlugin.utils.isSelectionInList(value)
                     && ListPlugin.utils.getCurrentList(value).type === type;
         return isActive ?
-          props.onChange(ListPlugin.changes.unwrapList(change))
+          onChange(ListPlugin.changes.unwrapList(change))
           :
-          props.onChange(ListPlugin.changes.wrapInList(change, type));
+          onChange(ListPlugin.changes.wrapInList(change, type));
       }
       case BLOCKS.OL_LIST: {
         const isActive = ListPlugin.utils.isSelectionInList(value)
                     && ListPlugin.utils.getCurrentList(value).type === type;
         return isActive ?
-          props.onChange(ListPlugin.changes.unwrapList(change))
+          onChange(ListPlugin.changes.unwrapList(change))
           :
-          props.onChange(ListPlugin.changes.wrapInList(change, type));
+          onChange(ListPlugin.changes.wrapInList(change, type));
       }
       case BLOCKS.CHECK_LIST: {
         const isActive = CheckListPlugin.utils.isSelectionInList(value)
                     && CheckListPlugin.utils.getCurrentList(value).type === type;
         return isActive ?
-          props.onChange(CheckListPlugin.changes.unwrapList(change))
+          onChange(CheckListPlugin.changes.unwrapList(change))
           :
-          props.onChange(CheckListPlugin.changes.wrapInList(change, type));
+          onChange(CheckListPlugin.changes.wrapInList(change, type));
+      }
+      case 'AlignRight': {
+        return onChange(change.setBlocks({ data: { align: 'right' } }));
       }
       default:
         return null;
@@ -241,6 +250,16 @@ function Navbar(props) {
         Tag = <CheckBox style={{ fontSize: 20 }} />;
         break;
       }
+      case 'AlignLeft':
+      {
+        Tag = <FormatAlignLeft style={{ fontSize: 20 }} />;
+        break;
+      }
+      case 'AlignRight':
+      {
+        Tag = <FormatAlignRight style={{ fontSize: 20 }} />;
+        break;
+      }
       default:
         return null;
     }
@@ -263,7 +282,7 @@ function Navbar(props) {
           Slate-Tuto
         </Typography>
         <div className={s.editorTools}>
-          {renderMarkButton(MARKS.BOLD, '⌘ + b')}
+          <Bold isActive={hasMark(MARKS.BOLD)} onMouseDown={e => onClickMark(e, MARKS.BOLD)} />
           {renderMarkButton(MARKS.ITALIC, '⌘ + i')}
           {renderMarkButton(MARKS.HIGHLIGHT, '⌘ + e')}
           {renderMarkButton(MARKS.STRIKETHROUGH, '⌘ + d')}
@@ -279,6 +298,7 @@ function Navbar(props) {
           {renderBlockButton(BLOCKS.UL_LIST, '- + space')}
           {renderBlockButton(BLOCKS.OL_LIST, '1. + space')}
           {renderBlockButton(BLOCKS.CHECK_LIST, '[] + space')}
+          {renderBlockButton('AlignRight', '⌘ + opt + r')}
         </div>
         <Button color="primary" href="https://github.com/KohheePeace/slate-tuto">Github</Button>
         <Button color="primary" href="https://kohhepeace.gitbook.io/project/~/edit/primary/">Docs</Button>
