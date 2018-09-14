@@ -12,8 +12,8 @@ import initialData from '../slate-editor/initialData.json';
 import renderMark from '../slate-editor/renderer/renderMark';
 import renderNode from '../slate-editor/renderer/renderNode';
 import plugins from '../slate-editor/plugins/index';
-import onPasteText from '../slate-editor/helpers/onPasteText';
-import onPasteHtml from '../slate-editor/helpers/onPasteHtml';
+import onPasteText from '../slate-editor/changes/onPasteText';
+import onPasteHtml from '../slate-editor/changes/onPasteHtml';
 import HoveringMenu from '../slate-editor/components/HoveringMenu';
 import schema from '../slate-editor/schema/index';
 

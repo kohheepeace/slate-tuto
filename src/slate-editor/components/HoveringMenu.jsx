@@ -13,7 +13,7 @@ import Tooltip from 'material-ui/Tooltip';
 import s from './HoveringMenu.scss';
 import MARKS from '../constants/marks';
 
-import updateHoverMenuPosition from '../helpers/updateHoverMenuPosition';
+import updateHoverMenuPosition from '../changes/updateHoverMenuPosition';
 
 class HoveringMenu extends React.Component {
   constructor(props) {
