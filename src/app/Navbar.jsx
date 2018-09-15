@@ -2,279 +2,31 @@ import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
-import Tooltip from 'material-ui/Tooltip';
 import Button from 'material-ui/Button';
 
-/* slate plugin */
-import SlateEditTable from '@strelka/slate-edit-table';
-import SlateEditList from 'slate-edit-list';
-import SlateEditCode from 'slate-edit-code';
-import SlateEditBlockquote from 'slate-edit-blockquote';
-
-/* icon for marks */
-import FormatBold from '@material-ui/icons/FormatBold';
-import FormatItalic from '@material-ui/icons/FormatItalic';
-import BorderColor from '@material-ui/icons/BorderColor';
-import FormatUnderlined from '@material-ui/icons/FormatUnderlined';
-import StrikethroughS from '@material-ui/icons/StrikethroughS';
-import Code from '@material-ui/icons/Code';
-
-/* icons for blocks */
-import FormatQuote from '@material-ui/icons/FormatQuote';
-import GridOn from '@material-ui/icons/GridOn';
-import FormatListBulleted from '@material-ui/icons/FormatListBulleted';
-import FormatListNumbered from '@material-ui/icons/FormatListNumbered';
-import CheckBox from '@material-ui/icons/CheckBox';
-import FormatAlignRight from '@material-ui/icons/FormatAlignRight';
-import FormatAlignLeft from '@material-ui/icons/FormatAlignLeft';
-
-import MARKS from '../slate-editor/constants/marks';
-import BLOCKS from '../slate-editor/constants/blocks';
-
 import Bold from '../slate-editor/icons/Bold';
+import Code from '../slate-editor/icons/Code';
+import Italic from '../slate-editor/icons/Italic';
+import Underline from '../slate-editor/icons/Underline';
+import Strikethrough from '../slate-editor/icons/Strikethrough';
+import Highlight from '../slate-editor/icons/Highlight';
+
+import Table from '../slate-editor/icons/Table';
+import Hr from '../slate-editor/icons/Hr';
+import Blockquote from '../slate-editor/icons/Blockquote';
+import Heading from '../slate-editor/icons/Heading';
+import CodeBlock from '../slate-editor/icons/CodeBlock';
+import OlList from '../slate-editor/icons/OlList';
+import UlList from '../slate-editor/icons/UlList';
+import CheckList from '../slate-editor/icons/CheckList';
+import AlignLeft from '../slate-editor/icons/AlignLeft';
+import AlignRight from '../slate-editor/icons/AlignRight';
+import AlignCenter from '../slate-editor/icons/AlignCenter';
 
 import s from './Navbar.scss';
 
-
-const ListPlugin = SlateEditList({
-  types: [BLOCKS.OL_LIST, BLOCKS.UL_LIST],
-  typeItem: BLOCKS.LIST_ITEM,
-});
-
-const CheckListPlugin = SlateEditList({
-  types: [BLOCKS.CHECK_LIST],
-  typeItem: BLOCKS.CHECK_LIST_ITEM,
-});
-
-const BlockquotePlugin = SlateEditBlockquote();
-
-const CodePlugin = SlateEditCode();
-
-const TablePlugin = SlateEditTable();
-
 function Navbar(props) {
-  function hasMark(type) {
-    const { value } = props;
-    return value.activeMarks.some(mark => mark.type === type);
-  }
-
-  function hasBlock(type) {
-    const { value } = props;
-    return value.blocks.some(node => node.type === type);
-  }
-
-  function onClickMark(e, type) {
-    e.preventDefault();
-    const { value, onChange } = props;
-    const change = value.change().toggleMark(type);
-
-    onChange(change);
-  }
-
-  function renderMarkButton(type, title) {
-    const isActive = hasMark(type);
-    const onMouseDown = e => onClickMark(e, type);
-
-    let Tag;
-
-    switch (type) {
-      case MARKS.BOLD:
-        Tag = <FormatBold style={{ fontSize: 20 }} />;
-        break;
-      case MARKS.ITALIC:
-        Tag = <FormatItalic style={{ fontSize: 20 }} />;
-        break;
-      case MARKS.HIGHLIGHT:
-        Tag = <BorderColor style={{ fontSize: 20 }} />;
-        break;
-      case MARKS.STRIKETHROUGH:
-        Tag = <StrikethroughS style={{ fontSize: 20 }} />;
-        break;
-      case MARKS.UNDERLINE:
-        Tag = <FormatUnderlined style={{ fontSize: 20 }} />;
-        break;
-      case MARKS.CODE:
-        Tag = <Code style={{ fontSize: 20 }} />;
-        break;
-      default:
-        return null;
-    }
-
-    return (
-      /* eslint-disable */
-      <Tooltip id={`tooltip-block-${type}`} title={title} placement="bottom">
-        <span className={s.button} onMouseDown={onMouseDown} data-active={isActive}>
-          {Tag}
-        </span>
-      </Tooltip>
-      /* eslint-enable */
-    );
-  }
-
-  function onClickBlock(e, type) {
-    e.preventDefault();
-
-    const { value, onChange } = props;
-    const change = value.change();
-    const { selection } = value;
-    console.log(selection);
-
-    switch (type) {
-      case BLOCKS.HEADING_1:
-      case BLOCKS.HEADING_2:
-      case BLOCKS.HEADING_3:
-      {
-        const isActive = hasBlock(type);
-        return onChange(change.setBlocks(isActive ? BLOCKS.PARAGRAPH : type));
-      }
-      case BLOCKS.HR: {
-        return onChange(change.setBlocks({ type, isVoid: true }));
-      }
-      case BLOCKS.BLOCKQUOTE: {
-        const isActive = BlockquotePlugin.utils.isSelectionInBlockquote(value);
-        return isActive ?
-          onChange(BlockquotePlugin.changes.unwrapBlockquote(change))
-          :
-          onChange(BlockquotePlugin.changes.wrapInBlockquote(change));
-      }
-      case BLOCKS.CODE_BLOCK: {
-        return onChange(CodePlugin.changes.toggleCodeBlock(change));
-      }
-      case BLOCKS.TABLE: {
-        const isActive = TablePlugin.utils.isSelectionInTable(value);
-        return isActive ?
-          onChange(TablePlugin.changes.removeTable(change))
-          :
-          onChange(TablePlugin.changes.insertTable(change));
-      }
-      case BLOCKS.UL_LIST: {
-        const isActive = ListPlugin.utils.isSelectionInList(value)
-                    && ListPlugin.utils.getCurrentList(value).type === type;
-        return isActive ?
-          onChange(ListPlugin.changes.unwrapList(change))
-          :
-          onChange(ListPlugin.changes.wrapInList(change, type));
-      }
-      case BLOCKS.OL_LIST: {
-        const isActive = ListPlugin.utils.isSelectionInList(value)
-                    && ListPlugin.utils.getCurrentList(value).type === type;
-        return isActive ?
-          onChange(ListPlugin.changes.unwrapList(change))
-          :
-          onChange(ListPlugin.changes.wrapInList(change, type));
-      }
-      case BLOCKS.CHECK_LIST: {
-        const isActive = CheckListPlugin.utils.isSelectionInList(value)
-                    && CheckListPlugin.utils.getCurrentList(value).type === type;
-        return isActive ?
-          onChange(CheckListPlugin.changes.unwrapList(change))
-          :
-          onChange(CheckListPlugin.changes.wrapInList(change, type));
-      }
-      case 'AlignRight': {
-        return onChange(change.setBlocks({ data: { align: 'right' } }));
-      }
-      default:
-        return null;
-    }
-  }
-
-  function renderBlockButton(type, title) {
-    const { value } = props;
-    const onMouseDown = e => onClickBlock(e, type);
-
-    let isActive;
-    let Tag;
-
-    switch (type) {
-      case BLOCKS.HEADING_1:
-      {
-        isActive = hasBlock(type);
-        Tag = <div style={{ height: 22, fontSize: 16, fontWeight: 500 }}>H1</div>;
-        break;
-      }
-      case BLOCKS.HEADING_2:
-      {
-        isActive = hasBlock(type);
-        Tag = <div style={{ height: 22, fontSize: 16, fontWeight: 500 }}>H2</div>;
-        break;
-      }
-      case BLOCKS.HEADING_3:
-      {
-        isActive = hasBlock(type);
-        Tag = <div style={{ height: 22, fontSize: 16, fontWeight: 500 }}>H3</div>;
-        break;
-      }
-      case BLOCKS.HR:
-      {
-        isActive = hasBlock(type);
-        Tag = <div style={{ height: 22, fontSize: 16, fontWeight: 500 }}>HR</div>;
-        break;
-      }
-      case BLOCKS.BLOCKQUOTE:
-      {
-        isActive = BlockquotePlugin.utils.isSelectionInBlockquote(value);
-        Tag = <FormatQuote style={{ fontSize: 20 }} />;
-        break;
-      }
-      case BLOCKS.CODE_BLOCK:
-      {
-        Tag = <Code style={{ fontSize: 18, border: '1px solid', borderRadius: 4 }} />;
-        isActive = CodePlugin.utils.isInCodeBlock(value);
-        break;
-      }
-      case BLOCKS.TABLE:
-      {
-        isActive = TablePlugin.utils.isSelectionInTable(value);
-        Tag = <GridOn style={{ fontSize: 20 }} />;
-        break;
-      }
-      case BLOCKS.UL_LIST:
-      {
-        isActive = ListPlugin.utils.isSelectionInList(value)
-                    && ListPlugin.utils.getCurrentList(value).type === type;
-        Tag = <FormatListBulleted style={{ fontSize: 20 }} />;
-        break;
-      }
-      case BLOCKS.OL_LIST:
-      {
-        isActive = ListPlugin.utils.isSelectionInList(value)
-                    && ListPlugin.utils.getCurrentList(value).type === type;
-        Tag = <FormatListNumbered style={{ fontSize: 20 }} />;
-        break;
-      }
-      case BLOCKS.CHECK_LIST:
-      {
-        isActive = CheckListPlugin.utils.isSelectionInList(value)
-                    && CheckListPlugin.utils.getCurrentList(value).type === type;
-        Tag = <CheckBox style={{ fontSize: 20 }} />;
-        break;
-      }
-      case 'AlignLeft':
-      {
-        Tag = <FormatAlignLeft style={{ fontSize: 20 }} />;
-        break;
-      }
-      case 'AlignRight':
-      {
-        Tag = <FormatAlignRight style={{ fontSize: 20 }} />;
-        break;
-      }
-      default:
-        return null;
-    }
-
-    return (
-      /* eslint-disable */
-      <Tooltip id={`tooltip-block-${type}`} title={title} placement="bottom">
-        <span className={s.button} onMouseDown={onMouseDown} data-active={isActive}>
-          {Tag}
-        </span>
-      </Tooltip>
-      /* eslint-enable */
-    );
-  }
-
+  const { value, onChange } = props
   return (
     <AppBar position="fixed" color="inherit">
       <Toolbar>
@@ -282,23 +34,25 @@ function Navbar(props) {
           Slate-Tuto
         </Typography>
         <div className={s.editorTools}>
-          <Bold isActive={hasMark(MARKS.BOLD)} onMouseDown={e => onClickMark(e, MARKS.BOLD)} />
-          {renderMarkButton(MARKS.ITALIC, '⌘ + i')}
-          {renderMarkButton(MARKS.HIGHLIGHT, '⌘ + e')}
-          {renderMarkButton(MARKS.STRIKETHROUGH, '⌘ + d')}
-          {renderMarkButton(MARKS.UNDERLINE, '⌘ + u')}
-          {renderMarkButton(MARKS.CODE, '⌘ + shift + 9')}
-          {renderBlockButton(BLOCKS.HEADING_1, '# + space')}
-          {renderBlockButton(BLOCKS.HEADING_2, '## + space')}
-          {renderBlockButton(BLOCKS.HEADING_3, '### + space')}
-          {renderBlockButton(BLOCKS.HR, '--- + enter')}
-          {renderBlockButton(BLOCKS.BLOCKQUOTE, '> + space')}
-          {renderBlockButton(BLOCKS.CODE_BLOCK, '```foo.rb:ruby + enter')}
-          {renderBlockButton(BLOCKS.TABLE, 'table:2x3 + enter')}
-          {renderBlockButton(BLOCKS.UL_LIST, '- + space')}
-          {renderBlockButton(BLOCKS.OL_LIST, '1. + space')}
-          {renderBlockButton(BLOCKS.CHECK_LIST, '[] + space')}
-          {renderBlockButton('AlignRight', '⌘ + opt + r')}
+          <Bold onChange={onChange} value={value} />
+          <Code onChange={onChange} value={value} />
+          <Italic onChange={onChange} value={value} />
+          <Strikethrough onChange={onChange} value={value} />
+          <Underline onChange={onChange} value={value} />
+          <Highlight onChange={onChange} value={value} />
+          <Table onChange={onChange} value={value} />
+          <Hr onChange={onChange} value={value} />
+          <Blockquote onChange={onChange} value={value} />
+          <Heading level={1} onChange={onChange} value={value} />
+          <Heading level={2} onChange={onChange} value={value} />
+          <Heading level={3} onChange={onChange} value={value} />
+          <CodeBlock onChange={onChange} value={value} />
+          <OlList onChange={onChange} value={value} />
+          <UlList onChange={onChange} value={value} />
+          <CheckList onChange={onChange} value={value} />
+          <AlignLeft onChange={onChange} value={value} />
+          <AlignCenter onChange={onChange} value={value} />
+          <AlignRight onChange={onChange} value={value} />
         </div>
         <Button color="primary" href="https://github.com/KohheePeace/slate-tuto">Github</Button>
         <Button color="primary" href="https://kohhepeace.gitbook.io/project/~/edit/primary/">Docs</Button>

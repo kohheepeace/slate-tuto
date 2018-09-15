@@ -1,13 +1,14 @@
 import React from 'react';
 
 import Tooltip from 'material-ui/Tooltip';
-import FormatBold from '@material-ui/icons/FormatBold';
+import FormatItalic from '@material-ui/icons/FormatItalic';
+
 import MARKS from '../constants/marks';
 import hasMark from '../utils/hasMark'
 
-function Bold(props) {
+function Italic(props) {
   const { onChange, value } = props;
-  const type = MARKS.BOLD;
+  const type = MARKS.ITALIC;
   const isActive = hasMark(value, type)
   const onClickMark = (e) => {
     e.preventDefault();
@@ -17,12 +18,12 @@ function Bold(props) {
   }
 
   return (
-    <Tooltip title="⌘ + b" placement="bottom">
+    <Tooltip title="⌘ + i" placement="bottom">
       <span onMouseDown={onClickMark} data-active={isActive}>
-        <FormatBold style={{ fontSize: 20 }} />
+        <FormatItalic style={{ fontSize: 20 }} />
       </span>
     </Tooltip>
   );
 }
 
-export default Bold;
+export default Italic;
