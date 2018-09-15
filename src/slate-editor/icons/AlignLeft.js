@@ -1,17 +1,17 @@
-import React from 'react';
+import React from 'react'
 
-import Tooltip from 'material-ui/Tooltip';
-import FormatAlignLeft from '@material-ui/icons/FormatAlignLeft';
+import Tooltip from 'material-ui/Tooltip'
+import FormatAlignLeft from '@material-ui/icons/FormatAlignLeft'
 
-function AlignLeft(props) {
-  const { onChange, value } = props;
-  const change = value.change();
+function AlignLeft (props) {
+  const { onChange, value } = props
+  const change = value.change()
   const onClickBlock = (e) => {
     e.preventDefault()
     onChange(change.setBlocks({ data: { align: 'left' } }))
   }
   return (
-    <Tooltip title="align left" placement="bottom">
+    <Tooltip title='align left' placement='bottom'>
       <span onMouseDown={onClickBlock}>
         <FormatAlignLeft style={{ fontSize: 20 }} />
       </span>
@@ -19,4 +19,4 @@ function AlignLeft(props) {
   )
 }
 
-export default AlignLeft;
+export default AlignLeft

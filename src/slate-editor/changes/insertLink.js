@@ -1,4 +1,4 @@
-import { LINK } from '../constants/inlines';
+import { LINK } from '../constants/inlines'
 
 const insertLink = (change, href) => {
   if (change.value.isCollapsed) {
@@ -7,17 +7,17 @@ const insertLink = (change, href) => {
       .extend(0 - href.length)
       .wrapInline({
         type: LINK,
-        data: { href },
+        data: { href }
       })
-      .collapseToEnd();
+      .collapseToEnd()
   } else {
     change.wrapInline({
       type: LINK,
-      data: { href },
-    });
+      data: { href }
+    })
 
-    change.collapseToEnd();
+    change.collapseToEnd()
   }
-};
+}
 
-export default insertLink;
+export default insertLink

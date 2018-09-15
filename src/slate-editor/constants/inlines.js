@@ -1,3 +1,3 @@
 module.exports = {
-  LINK: 'link',
-};
+  LINK: 'link'
+}

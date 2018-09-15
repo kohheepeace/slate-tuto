@@ -1,6 +1,6 @@
-import { LAST_CHILD_TYPE_INVALID } from 'slate-schema-violations';
-import { Block } from 'slate';
-import BLOCKS from '../constants/blocks';
+import { LAST_CHILD_TYPE_INVALID } from 'slate-schema-violations'
+import { Block } from 'slate'
+import BLOCKS from '../constants/blocks'
 
 const schema = {
   document: {
@@ -8,14 +8,14 @@ const schema = {
     normalize: (change, reason, { node }) => {
       switch (reason) {
         case LAST_CHILD_TYPE_INVALID: {
-          const paragraph = Block.create(BLOCKS.PARAGRAPH);
-          return change.insertNodeByKey(node.key, node.nodes.size, paragraph);
+          const paragraph = Block.create(BLOCKS.PARAGRAPH)
+          return change.insertNodeByKey(node.key, node.nodes.size, paragraph)
         }
         default:
-          break;
+          break
       }
-    },
-  },
-};
+    }
+  }
+}
 
-export default schema;
+export default schema

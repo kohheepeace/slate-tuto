@@ -1,72 +1,72 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-import FormatBold from '@material-ui/icons/FormatBold';
-import FormatItalic from '@material-ui/icons/FormatItalic';
-import FormatUnderlined from '@material-ui/icons/FormatUnderlined';
-import StrikethroughS from '@material-ui/icons/StrikethroughS';
-import Code from '@material-ui/icons/Code';
-import BorderColor from '@material-ui/icons/BorderColor';
+import FormatBold from '@material-ui/icons/FormatBold'
+import FormatItalic from '@material-ui/icons/FormatItalic'
+import FormatUnderlined from '@material-ui/icons/FormatUnderlined'
+import StrikethroughS from '@material-ui/icons/StrikethroughS'
+import Code from '@material-ui/icons/Code'
+import BorderColor from '@material-ui/icons/BorderColor'
 
-import Tooltip from 'material-ui/Tooltip';
+import Tooltip from 'material-ui/Tooltip'
 
-import s from './HoveringMenu.scss';
-import MARKS from '../constants/marks';
+import s from './HoveringMenu.scss'
+import MARKS from '../constants/marks'
 
-import updateHoverMenuPosition from '../changes/updateHoverMenuPosition';
+import updateHoverMenuPosition from '../changes/updateHoverMenuPosition'
 
 class HoveringMenu extends React.Component {
-  constructor(props) {
-    super(props);
-    this.hoverMenuRef = React.createRef();
+  constructor (props) {
+    super(props)
+    this.hoverMenuRef = React.createRef()
   }
 
   componentDidMount = () => {
-    updateHoverMenuPosition(this.props.value, this.hoverMenuRef.current);
+    updateHoverMenuPosition(this.props.value, this.hoverMenuRef.current)
   }
 
   componentDidUpdate = () => {
-    updateHoverMenuPosition(this.props.value, this.hoverMenuRef.current);
+    updateHoverMenuPosition(this.props.value, this.hoverMenuRef.current)
   }
 
-  onClickMark(e, type) {
-    const { value, onChange } = this.props;
-    e.preventDefault();
-    const change = value.change().toggleMark(type);
-    onChange(change);
+  onClickMark (e, type) {
+    const { value, onChange } = this.props
+    e.preventDefault()
+    const change = value.change().toggleMark(type)
+    onChange(change)
   }
 
-  hasMark(type) {
-    const { value } = this.props;
-    return value.activeMarks.some(mark => mark.type === type);
+  hasMark (type) {
+    const { value } = this.props
+    return value.activeMarks.some(mark => mark.type === type)
   }
 
-  renderMarkButton(type, tag, title) {
-    const isActive = this.hasMark(type);
-    const onMouseDown = e => this.onClickMark(e, type);
-    let Tag;
+  renderMarkButton (type, tag, title) {
+    const isActive = this.hasMark(type)
+    const onMouseDown = e => this.onClickMark(e, type)
+    let Tag
 
     switch (tag) {
       case 'FormatBold':
-        Tag = <FormatBold style={{ fontSize: 20 }} />;
-        break;
+        Tag = <FormatBold style={{ fontSize: 20 }} />
+        break
       case 'FormatItalic':
-        Tag = <FormatItalic style={{ fontSize: 20 }} />;
-        break;
+        Tag = <FormatItalic style={{ fontSize: 20 }} />
+        break
       case 'BorderColor':
-        Tag = <BorderColor style={{ fontSize: 20 }} />;
-        break;
+        Tag = <BorderColor style={{ fontSize: 20 }} />
+        break
       case 'StrikethroughS':
-        Tag = <StrikethroughS style={{ fontSize: 20 }} />;
-        break;
+        Tag = <StrikethroughS style={{ fontSize: 20 }} />
+        break
       case 'FormatUnderlined':
-        Tag = <FormatUnderlined style={{ fontSize: 20 }} />;
-        break;
+        Tag = <FormatUnderlined style={{ fontSize: 20 }} />
+        break
       case 'Code':
-        Tag = <Code style={{ fontSize: 20 }} />;
-        break;
+        Tag = <Code style={{ fontSize: 20 }} />
+        break
       default:
-        return null;
+        return null
     }
 
     return (
@@ -77,11 +77,11 @@ class HoveringMenu extends React.Component {
         </span>
       </Tooltip>
       /* eslint-enable */
-    );
+    )
   }
 
-  render() {
-    const root = window.document.getElementById('app');
+  render () {
+    const root = window.document.getElementById('app')
 
     return ReactDOM.createPortal(
       <div className={s.hoverMenu} ref={this.hoverMenuRef}>
@@ -92,9 +92,9 @@ class HoveringMenu extends React.Component {
         {this.renderMarkButton(MARKS.UNDERLINE, 'FormatUnderlined', '⌘ + u')}
         {this.renderMarkButton(MARKS.CODE, 'Code', '⌘ + shift + 9')}
       </div>,
-      root,
-    );
+      root
+    )
   }
 }
 
-export default HoveringMenu;
+export default HoveringMenu

@@ -1,15 +1,15 @@
-import React from 'react';
-import s from './CheckListItem.scss';
+import React from 'react'
+import s from './CheckListItem.scss'
 
-export default function CheckListItem(props) {
-  function onChange(e) {
-    const { checked } = e.target;
-    const { editor, node } = props;
-    editor.change(c => c.setNodeByKey(node.key, { data: { checked } }));
+export default function CheckListItem (props) {
+  function onChange (e) {
+    const { checked } = e.target
+    const { editor, node } = props
+    editor.change(c => c.setNodeByKey(node.key, { data: { checked } }))
   }
 
-  const { attributes, children, node } = props;
-  const checked = node.data.get('checked') || false;
+  const { attributes, children, node } = props
+  const checked = node.data.get('checked') || false
   return (
     <li className={s.listItem} {...attributes}>
       <div
@@ -17,7 +17,7 @@ export default function CheckListItem(props) {
         contentEditable={false}
       >
         <input
-          type="checkbox"
+          type='checkbox'
           checked={checked}
           onChange={onChange}
         />
@@ -26,5 +26,5 @@ export default function CheckListItem(props) {
         {children}
       </div>
     </li>
-  );
+  )
 }

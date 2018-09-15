@@ -1,102 +1,102 @@
-import React from 'react';
-import Select from 'react-select';
-import Input from 'material-ui/Input';
+import React from 'react'
+import Select from 'react-select'
+import Input from 'material-ui/Input'
 import '!style-loader!css-loader!react-select/dist/react-select.css'; /* eslint-disable-line */
-import { languages } from 'prismjs/components.json';
-import SlateEditCode from 'slate-edit-code';
+import { languages } from 'prismjs/components.json'
+import SlateEditCode from 'slate-edit-code'
 
-import s from './CodeBlock.scss';
+import s from './CodeBlock.scss'
 
-const syntaxList = Object.keys(languages).map(syntax => ({ label: syntax, value: syntax }));
+const syntaxList = Object.keys(languages).map(syntax => ({ label: syntax, value: syntax }))
 
 export default class CodeBlock extends React.PureComponent {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
-    const { node } = props;
-    const syntax = node.data.get('syntax');
-    const filename = node.data.get('filename');
+    const { node } = props
+    const syntax = node.data.get('syntax')
+    const filename = node.data.get('filename')
 
     this.state = {
       filename,
       syntax,
-      isFilenameFocused: false,
-    };
+      isFilenameFocused: false
+    }
   }
 
   onFilenameChange = (e) => {
-    const filename = e.target.value;
+    const filename = e.target.value
 
     this.setState({
-      filename,
-    });
+      filename
+    })
   }
 
   onSyntaxChange = (select) => {
-    const syntax = select.value;
+    const syntax = select.value
 
     this.setState({
-      syntax,
-    });
+      syntax
+    })
 
-    this.saveData();
+    this.saveData()
   }
 
   onFocus = (e) => {
-    e.stopPropagation();
+    e.stopPropagation()
     this.setState({
-      isFilenameFocused: true,
-    });
+      isFilenameFocused: true
+    })
   }
 
   onBlur = () => {
     this.setState({
-      isFilenameFocused: false,
-    });
+      isFilenameFocused: false
+    })
 
-    this.saveData();
+    this.saveData()
   }
 
   saveData = () => {
-    const { node, editor } = this.props;
-    const { syntax, filename } = this.state;
+    const { node, editor } = this.props
+    const { syntax, filename } = this.state
 
     editor.change((c) => {
       c.setNodeByKey(node.key, {
         data: {
           syntax,
-          filename,
-        },
-      });
-    });
+          filename
+        }
+      })
+    })
   }
 
   addFilename = () => {
     this.setState({
-      isFilenameFocused: true,
-    });
+      isFilenameFocused: true
+    })
   }
 
-  render() {
-    const { isFilenameFocused, syntax, filename } = this.state;
+  render () {
+    const { isFilenameFocused, syntax, filename } = this.state
 
     const {
-      attributes, children, editor,
-    } = this.props;
+      attributes, children, editor
+    } = this.props
 
-    const { readOnly, value } = editor.props;
+    const { readOnly, value } = editor.props
 
-    const isInCodeBlock = SlateEditCode().utils.isInCodeBlock(value);
+    const isInCodeBlock = SlateEditCode().utils.isInCodeBlock(value)
 
     return (
       <div className={s.codeBlock} {...attributes}>
         {(isInCodeBlock && !filename && !isFilenameFocused) &&
-          <div className="popupMenu" contentEditable={false}>
-            <button className="addFilename" onClick={this.addFilename}>Add filename</button>
+          <div className='popupMenu' contentEditable={false}>
+            <button className='addFilename' onClick={this.addFilename}>Add filename</button>
             <div className={s.syntax}>
               <Select
-                placeholder="syntax"
-                name="language"
+                placeholder='syntax'
+                name='language'
                 value={syntax}
                 onChange={this.onSyntaxChange}
                 searchable
@@ -109,14 +109,13 @@ export default class CodeBlock extends React.PureComponent {
         {(filename || isFilenameFocused) &&
           <div className={s.header} contentEditable={false}>
             <div className={s.filename}>
-              {readOnly ?
-                <span>{filename.trim()}</span>
-                :
-                <Input
-                  type="text"
+              {readOnly
+                ? <span>{filename.trim()}</span>
+                : <Input
+                  type='text'
                   autoFocus={isFilenameFocused}
                   value={filename || ''}
-                  placeholder="filename"
+                  placeholder='filename'
                   style={{ fontSize: '.8rem' }}
                   onFocus={this.onFocus}
                   onBlur={this.onBlur}
@@ -127,8 +126,8 @@ export default class CodeBlock extends React.PureComponent {
             {!readOnly &&
               <div className={s.syntax}>
                 <Select
-                  placeholder="syntax"
-                  name="language"
+                  placeholder='syntax'
+                  name='language'
                   value={syntax}
                   onChange={this.onSyntaxChange}
                   searchable
@@ -181,6 +180,6 @@ export default class CodeBlock extends React.PureComponent {
         `}
         </style>
       </div>
-    );
+    )
   }
 }

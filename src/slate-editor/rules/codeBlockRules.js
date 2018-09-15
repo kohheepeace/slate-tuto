@@ -1,14 +1,14 @@
-import SlateEditCode from 'slate-edit-code';
+import SlateEditCode from 'slate-edit-code'
 
 const codeBlockRules =
 {
-  deserialize(el) {
-    if (el.tagName.toLowerCase() !== 'pre') return;
+  deserialize (el) {
+    if (el.tagName.toLowerCase() !== 'pre') return
 
-    const codeBlock = SlateEditCode().utils.deserializeCode(el.innerText);
+    const codeBlock = SlateEditCode().utils.deserializeCode(el.innerText)
 
-    return codeBlock;
-  },
-};
+    return codeBlock
+  }
+}
 
-export default codeBlockRules;
+export default codeBlockRules
