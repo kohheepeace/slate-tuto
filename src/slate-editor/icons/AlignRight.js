@@ -6,7 +6,7 @@ import FormatAlignRight from '@material-ui/icons/FormatAlignRight'
 function AlignRight (props) {
   const { onChange, value } = props
   const change = value.change()
-  const isActive = value.blocks.some(block => block.get('data').get('align') == 'right')
+  const isActive = value.blocks.some(block => block.get('data').get('align') === 'right')
   const onCLickBlock = (e) => {
     e.preventDefault()
     isActive

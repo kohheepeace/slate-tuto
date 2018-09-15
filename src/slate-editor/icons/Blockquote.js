@@ -4,14 +4,11 @@ import Tooltip from 'material-ui/Tooltip'
 import FormatQuote from '@material-ui/icons/FormatQuote'
 import SlateEditBlockquote from 'slate-edit-blockquote'
 
-import BLOCKS from '../constants/blocks'
-
 const BlockquotePlugin = SlateEditBlockquote()
 
 function Blockquote (props) {
   const { onChange, value } = props
   const change = value.change()
-  const type = BLOCKS.BLOCKQUOTE
   const isActive = BlockquotePlugin.utils.isSelectionInBlockquote(value)
   const onCLickBlock = (e) => {
     e.preventDefault()

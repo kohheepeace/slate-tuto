@@ -11,14 +11,14 @@
   border-radius: 4px;
   transition: opacity .75s;
   background: #1B2733;
-}
 
-.button {
-  color: #C1C7CD;
-  margin: 0 .5rem;
-  cursor: pointer;
-}
+  span {
+    color: #C1C7CD;
+    margin: 0 .5rem;
+    cursor: pointer;
+  }
 
-.button[data-active='true'] {
-  color: #fff;
+  span[data-active='true'] {
+    color: #fff;
+  }
 }

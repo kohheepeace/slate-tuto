@@ -6,7 +6,7 @@ import FormatAlignCenter from '@material-ui/icons/FormatAlignCenter'
 function AlignCenter (props) {
   const { onChange, value } = props
   const change = value.change()
-  const isActive = value.blocks.some(block => block.get('data').get('align') == 'center')
+  const isActive = value.blocks.some(block => block.get('data').get('align') === 'center')
   const onCLickBlock = (e) => {
     e.preventDefault()
     isActive

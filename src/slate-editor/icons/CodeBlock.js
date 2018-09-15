@@ -5,14 +5,11 @@ import Code from '@material-ui/icons/Code'
 
 import SlateEditCode from 'slate-edit-code'
 
-import BLOCKS from '../constants/blocks'
-
 const CodePlugin = SlateEditCode()
 
 function CodeBlock (props) {
   const { onChange, value } = props
   const change = value.change()
-  const type = BLOCKS.CODE_BLOCK
 
   const isActive = CodePlugin.utils.isInCodeBlock(value)
   const onClickBlock = (e) => {
