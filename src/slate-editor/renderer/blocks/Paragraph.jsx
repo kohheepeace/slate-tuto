@@ -17,10 +17,14 @@ function collect(connect, monitor) {
 
 function Paragraph(props) {
   const {
-    connectDropTarget, isOver, attributes, children, canDrop,
+    connectDropTarget, isOver, attributes, children, canDrop, node
   } = props;
+
+  const textAlign = node.get('data').get('align', 'left');
+  const style = { borderBottom: isOver && canDrop ? '3px solid #17a2b8' : 'none', textAlign }
+
   return connectDropTarget((
-    <p style={{ borderBottom: isOver && canDrop ? '3px solid #17a2b8' : 'none' }} {...attributes}>
+    <p style={style} {...attributes}>
       {children}
     </p>
   ));
