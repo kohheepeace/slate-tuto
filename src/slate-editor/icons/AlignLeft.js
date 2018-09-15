@@ -6,7 +6,6 @@ import FormatAlignLeft from '@material-ui/icons/FormatAlignLeft';
 function AlignLeft(props) {
   const { onChange, value } = props;
   const change = value.change();
-  const type = 'align-center'
   const onClickBlock = (e) => {
     e.preventDefault()
     onChange(change.setBlocks({ data: { align: 'left' } }))
