@@ -12,7 +12,7 @@ import Strikethrough from '../slate-editor/icons/Strikethrough'
 import Highlight from '../slate-editor/icons/Highlight'
 
 import Table from '../slate-editor/icons/Table'
-import Hr from '../slate-editor/icons/Hr'
+import HR from '../slate-editor/icons/HR'
 import Blockquote from '../slate-editor/icons/Blockquote'
 import Heading from '../slate-editor/icons/Heading'
 import CodeBlock from '../slate-editor/icons/CodeBlock'
@@ -41,7 +41,7 @@ function Navbar (props) {
           <Underline onChange={onChange} value={value} />
           <Highlight onChange={onChange} value={value} />
           <Table onChange={onChange} value={value} />
-          <Hr onChange={onChange} value={value} />
+          <HR onChange={onChange} value={value} />
           <Blockquote onChange={onChange} value={value} />
           <Heading level={1} onChange={onChange} value={value} />
           <Heading level={2} onChange={onChange} value={value} />

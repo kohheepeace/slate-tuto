@@ -5,7 +5,7 @@ import Tooltip from 'material-ui/Tooltip'
 import hasBlock from '../utils/hasBlock'
 import BLOCKS from '../constants/blocks'
 
-function Hr (props) {
+function HR (props) {
   const { onChange, value } = props
   const change = value.change()
   const type = BLOCKS.HR
@@ -23,4 +23,4 @@ function Hr (props) {
   )
 }
 
-export default Hr
+export default HR
