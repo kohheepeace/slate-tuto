@@ -3,7 +3,7 @@ function exitHeading () {
     onKeyDown (e, change) {
       const { value } = change
       const { startBlock } = value
-      const isSelectionHeading = startBlock.type.match(/heading_/)
+      const isSelectionHeading = Boolean(startBlock.type && startBlock.type.match(/heading_/))
       if (e.key === 'Enter' && isSelectionHeading) {
         return change.insertBlock('paragraph')
       }

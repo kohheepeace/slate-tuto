@@ -7757,9 +7757,9 @@ slate-edit-blockquote@^0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/slate-edit-blockquote/-/slate-edit-blockquote-0.6.1.tgz#ac145210f50b749ea06f547763b9a2f57187a550"
 
-slate-edit-code@^0.15.0:
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/slate-edit-code/-/slate-edit-code-0.15.0.tgz#079a2754a07e8b1d38e230ff444d6ebc6abf3b05"
+slate-edit-code@^0.15.5:
+  version "0.15.5"
+  resolved "https://registry.yarnpkg.com/slate-edit-code/-/slate-edit-code-0.15.5.tgz#9b64ad7150a6eaaa8212d7a2200e1c6ae2332b63"
   dependencies:
     detect-indent "^4.0.0"
     detect-newline "^2.1.0"

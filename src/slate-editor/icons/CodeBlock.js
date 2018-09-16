@@ -4,8 +4,9 @@ import Tooltip from 'material-ui/Tooltip'
 import Code from '@material-ui/icons/Code'
 
 import SlateEditCode from 'slate-edit-code'
+import BLOCKS from '../constants/blocks'
 
-const CodePlugin = SlateEditCode()
+const CodePlugin = SlateEditCode({ exitBlockType: BLOCKS.PARAGRAPH })
 
 function CodeBlock (props) {
   const { onChange, value } = props
@@ -14,7 +15,7 @@ function CodeBlock (props) {
   const isActive = CodePlugin.utils.isInCodeBlock(value)
   const onClickBlock = (e) => {
     e.preventDefault()
-    onChange(CodePlugin.changes.toggleCodeBlock(change))
+    onChange(CodePlugin.changes.toggleCodeBlock(change, 'paragraph'))
   }
   return (
     <Tooltip title='```foo.rb:ruby + enter' placement='bottom'>
