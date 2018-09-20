@@ -1,14 +1,14 @@
 module.exports = {
   entry: [
-    './src/index.jsx',
+    './src/index.jsx'
   ],
   output: {
     path: `${__dirname}/dist`,
     publicPath: '/',
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   devServer: {
-    contentBase: './dist',
+    contentBase: './dist'
   },
   module: {
     rules: [
@@ -16,13 +16,8 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: [
-          { loader: 'babel-loader' },
-          { loader: 'eslint-loader',
-            options: {
-              fix: true
-            }
-          }
-        ],
+          { loader: 'babel-loader' }
+        ]
       },
       {
         test: /\.css$/,
@@ -32,10 +27,10 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[path][name]__[local]--[hash:base64:5]',
-            },
-          },
-        ],
+              localIdentName: '[path][name]__[local]--[hash:base64:5]'
+            }
+          }
+        ]
       },
       {
         test: /\.scss$/,
@@ -45,17 +40,17 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[path][name]__[local]--[hash:base64:5]',
-            },
+              localIdentName: '[path][name]__[local]--[hash:base64:5]'
+            }
           },
           {
-            loader: "sass-loader"
+            loader: 'sass-loader'
           }
-        ],
-      },
-    ],
+        ]
+      }
+    ]
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx'],
-  },
-};
+    extensions: ['*', '.js', '.jsx']
+  }
+}

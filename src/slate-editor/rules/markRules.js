@@ -1,4 +1,4 @@
-import MARKS from '../constants/marks';
+import MARKS from '../constants/marks'
 
 const MARK_TAGS = {
   strong: MARKS.BOLD,
@@ -6,21 +6,21 @@ const MARK_TAGS = {
   u: MARKS.UNDERLINE,
   del: MARKS.STRIKETHROUGH,
   code: MARKS.CODE,
-  mark: MARKS.HIGHLIGHT,
-};
+  mark: MARKS.HIGHLIGHT
+}
 
 const markRules =
 {
-  deserialize(el, next) {
-    const mark = MARK_TAGS[el.tagName.toLowerCase()];
+  deserialize (el, next) {
+    const mark = MARK_TAGS[el.tagName.toLowerCase()]
     if (mark) {
       return {
         object: 'mark',
         type: mark,
-        nodes: next(el.childNodes),
-      };
+        nodes: next(el.childNodes)
+      }
     }
-  },
-};
+  }
+}
 
-export default markRules;
+export default markRules

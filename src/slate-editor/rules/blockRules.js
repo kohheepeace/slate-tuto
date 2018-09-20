@@ -1,4 +1,4 @@
-import BLOCKS from '../constants/blocks';
+import BLOCKS from '../constants/blocks'
 
 const BLOCK_TAGS = {
   p: BLOCKS.PARAGRAPH,
@@ -16,21 +16,21 @@ const BLOCK_TAGS = {
   h3: BLOCKS.HEADING_3,
   h4: BLOCKS.HEADING_4,
   h5: BLOCKS.HEADING_5,
-  h6: BLOCKS.HEADING_6,
-};
+  h6: BLOCKS.HEADING_6
+}
 
 const blockRules =
 {
-  deserialize(el, next) {
-    const block = BLOCK_TAGS[el.tagName.toLowerCase()];
+  deserialize (el, next) {
+    const block = BLOCK_TAGS[el.tagName.toLowerCase()]
     if (block) {
       return {
         object: 'block',
         type: block,
-        nodes: next(el.childNodes),
-      };
+        nodes: next(el.childNodes)
+      }
     }
-  },
-};
+  }
+}
 
-export default blockRules;
+export default blockRules

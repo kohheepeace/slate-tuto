@@ -2,13 +2,13 @@
   display: flex;
   position: absolute;
   left: 25%;
+
+  span[data-active='true'] {
+    color: #2196F3;
+  }
 }
 
 .button {
   margin: 0 .5rem;
   cursor: pointer;
-}
-
-.button[data-active='true'] {
-  color: #2196F3;
 }

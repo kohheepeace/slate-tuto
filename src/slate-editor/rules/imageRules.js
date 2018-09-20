@@ -1,19 +1,19 @@
-import BLOCKS from '../constants/blocks';
+import BLOCKS from '../constants/blocks'
 
 const imageRules =
 {
-  deserialize(el, next) {
-    if (el.tagName.toLowerCase() !== 'img') return;
+  deserialize (el, next) {
+    if (el.tagName.toLowerCase() !== 'img') return
 
-    const src = el.getAttribute('src');
+    const src = el.getAttribute('src')
     return {
       object: 'block',
       type: BLOCKS.IMAGE,
       isVoid: true,
       nodes: next(el.childNodes),
-      data: { src },
-    };
-  },
-};
+      data: { src }
+    }
+  }
+}
 
-export default imageRules;
+export default imageRules

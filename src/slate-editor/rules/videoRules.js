@@ -1,9 +1,9 @@
-import BLOCKS from '../constants/blocks';
+import BLOCKS from '../constants/blocks'
 
 const videoRules =
 {
-  deserialize(el, next) {
-    if (el.tagName.toLowerCase() !== 'iframe') return;
+  deserialize (el, next) {
+    if (el.tagName.toLowerCase() !== 'iframe') return
 
     return {
       object: 'block',
@@ -12,10 +12,10 @@ const videoRules =
       nodes: next(el.childNodes),
       data: {
         src: el.getAttribute('src'),
-        url: el.getAttribute('url'),
-      },
-    };
-  },
-};
+        url: el.getAttribute('url')
+      }
+    }
+  }
+}
 
-export default videoRules;
+export default videoRules

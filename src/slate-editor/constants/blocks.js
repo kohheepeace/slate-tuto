@@ -19,5 +19,5 @@ module.exports = {
   TABLE_ROW: 'table_row',
   TABLE_CELL: 'table_cell',
   IMAGE: 'image',
-  VIDEO: 'video',
-};
+  VIDEO: 'video'
+}
